@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.lljjcoder.citypickerview.widget.CalendarPicker;
 import com.lljjcoder.citypickerview.widget.SinglePicker;
 
 import static java.security.AccessController.getContext;
@@ -22,13 +23,21 @@ public class MainActivity extends AppCompatActivity {
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] datas = getResources().getStringArray(R.array.content_data);
-                SinglePicker singlePicker = new SinglePicker.Builder(MainActivity.this)
-                        .initDatas(datas)
-                        .textSize(20)
-//                        .provinceCyclic(false)
-                        .build();
-                singlePicker.show();
+
+                new CalendarPicker.Builder(MainActivity.this)
+                        .setTextView((TextView) v)
+                        .build()
+                        .show();
+
+//                String[] datas = getResources().getStringArray(R.array.content_data);
+//                SinglePicker singlePicker = new SinglePicker.Builder(MainActivity.this)
+//                        .initDatas(datas)
+//                        .textSize(20)
+//                        .build();
+//                singlePicker.show();
+
+
+
 //                CityPicker cityPicker = new CityPicker.Builder(MainActivity.this).textSize(20)
 //                        .onlyShowProvinceAndCity(false)
 //                        .confirTextColor("#000000")
@@ -45,12 +54,7 @@ public class MainActivity extends AppCompatActivity {
 //                        .build();
 //
 //                cityPicker.show();
-                singlePicker.setOnItemClickListener(new SinglePicker.OnItemClickListener() {
-                    @Override
-                    public void onSelected(String selected) {
-                        tvResult.setText(selected);
-                    }
-                });
+
             }
         });
     }

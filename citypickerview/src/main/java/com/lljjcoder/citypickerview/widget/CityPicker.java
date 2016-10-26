@@ -36,7 +36,7 @@ import javax.xml.parsers.SAXParserFactory;
  * 邮箱：lijiwork@sina.com
  */
 public class CityPicker implements CanShow, OnWheelChangedListener {
-
+    private TextView outsideTextView;
     private boolean mTvTitleVisible
             ;
     private TextView mTvTitle;
@@ -199,6 +199,7 @@ public class CityPicker implements CanShow, OnWheelChangedListener {
         this.isCityCyclic = builder.isCityCyclic;
         this.context = builder.mContext;
         this.padding = builder.padding;
+        this.outsideTextView = builder.textView;
 
         //        this.confirmTextColor = builder.confirmTextColor;
         this.confirmTextColorStr = builder.confirmTextColorStr;
@@ -282,11 +283,13 @@ public class CityPicker implements CanShow, OnWheelChangedListener {
         mTvOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (showProvinceAndCity) {
+                if (showProvinceAndCity &&  listener!=null) {
                     listener.onSelected(mCurrentProviceName, mCurrentCityName, "", mCurrentZipCode);
-                }
-                else {
+                } else if (listener!=null){
                     listener.onSelected(mCurrentProviceName, mCurrentCityName, mCurrentDistrictName, mCurrentZipCode);
+                }
+                if (outsideTextView!=null){
+                    outsideTextView.setText(mCurrentProviceName+mCurrentCityName+mCurrentDistrictName);
                 }
                 hide();
             }
@@ -381,6 +384,7 @@ public class CityPicker implements CanShow, OnWheelChangedListener {
          */
         private boolean showProvinceAndCity = false;
         private boolean mTvTitleVisible;
+        private TextView textView;
 
         public Builder(Context context) {
             this.mContext = context;
@@ -393,6 +397,10 @@ public class CityPicker implements CanShow, OnWheelChangedListener {
          */
         public Builder onlyShowProvinceAndCity(boolean flag) {
             this.showProvinceAndCity = flag;
+            return this;
+        }
+        public Builder setTextView(TextView textView){
+            this.textView = textView;
             return this;
         }
 
