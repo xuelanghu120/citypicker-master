@@ -1,9 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#b0000000"
-    android:orientation="vertical">
+                android:id="@+id/ll_root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#b0000000"
+                android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +27,7 @@
                 android:gravity="center_vertical"
                 android:text="确定"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tv_cancel"
@@ -37,18 +38,18 @@
                 android:gravity="center_vertical"
                 android:text="取消"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
                 android:gravity="center_vertical"
                 android:text="选择地区"
                 android:textColor="#000000"
-                android:textSize="18sp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"/>
+                android:textSize="18sp"/>
 
         </RelativeLayout>
 
@@ -60,22 +61,6 @@
 
             <com.lljjcoder.citypickerview.widget.wheel.WheelView
                 android:id="@+id/id_province"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-            </com.lljjcoder.citypickerview.widget.wheel.WheelView>
-
-            <com.lljjcoder.citypickerview.widget.wheel.WheelView
-                android:id="@+id/id_city"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-            </com.lljjcoder.citypickerview.widget.wheel.WheelView>
-
-            <com.lljjcoder.citypickerview.widget.wheel.WheelView
-                android:id="@+id/id_district"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">

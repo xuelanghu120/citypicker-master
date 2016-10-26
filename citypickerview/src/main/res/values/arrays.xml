@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="content_data">
+        <item>发布垃圾信息</item>
+        <item>举报不实信息</item>
+        <item>泄露他人隐私</item>
+        <item>不文明行为</item>
+        <item>敏感信息</item>
+        <item>骚扰信息</item>
+        <item>虚假中奖</item>
+    </string-array>
+</resources>
