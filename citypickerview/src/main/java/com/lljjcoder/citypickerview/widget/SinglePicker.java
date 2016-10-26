@@ -3,6 +3,7 @@ package com.lljjcoder.citypickerview.widget;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.midi.MidiOutputPort;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.lljjcoder.citypickerview.widget.wheel.adapters.ArrayWheelAdapter;
 
 
 public class SinglePicker implements CanShow, OnWheelChangedListener {
+    private TextView outsideTextView;
     private boolean mTvTitleVisible = false;
     private TextView mTvTitle;
     private Context context;
@@ -119,6 +121,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         this.cancelTextColorStr = builder.cancelTextColorStr;
 
         this.mTvTitleVisible = builder.mTvTitleVisible;
+        this.outsideTextView = builder.textView;
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         popview = layoutInflater.inflate(R.layout.pop_singlepicker, null);
@@ -168,6 +171,9 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
             @Override
             public void onClick(View v) {
                 listener.onSelected(mCurrentName);
+                if (outsideTextView!=null){
+                    outsideTextView.setText(mCurrentName);
+                }
                 hide();
             }
         });
@@ -227,6 +233,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         private boolean mTvTitleVisible;
         private String builderDefaultName;
         private String[] datas;
+        private TextView textView;
 
         public Builder(Context context) {
             this.mContext = context;
@@ -253,6 +260,11 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
          */
         public Builder cancelTextColor(String color) {
             this.cancelTextColorStr = color;
+            return this;
+        }
+
+        public Builder setTextView(TextView textView){
+            this.textView = textView;
             return this;
         }
 
