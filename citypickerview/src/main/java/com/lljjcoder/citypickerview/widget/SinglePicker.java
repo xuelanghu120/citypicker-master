@@ -16,13 +16,7 @@ import com.lljjcoder.citypickerview.widget.wheel.OnWheelChangedListener;
 import com.lljjcoder.citypickerview.widget.wheel.WheelView;
 import com.lljjcoder.citypickerview.widget.wheel.adapters.ArrayWheelAdapter;
 
-/******************************************
- * @author: xuzhu (xuzhu@51huxin.com)
- * @createDate: 2016/10/26
- * @company: (C) Copyright 阳光互信 2016
- * @since: JDK 1.8
- * @Description: 注释写这里
- ******************************************/
+
 
 public class SinglePicker implements CanShow, OnWheelChangedListener {
     private boolean mTvTitleVisible = false;
@@ -159,9 +153,6 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         if (!TextUtils.isEmpty(this.cancelTextColorStr)) {
             mTvCancel.setTextColor(Color.parseColor(this.cancelTextColorStr));
         }
-
-        //初始化城市数据
-        initDatas(context);
 
         // 添加change事件
         mWheelView.addChangingListener(this);
@@ -305,7 +296,6 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
 
         /**
          * 滚轮是否循环滚动
-         *
          * @param isCyclicForever
          * @return
          */
@@ -376,15 +366,6 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         arrayWheelAdapter.setTextColor(textColor);
         arrayWheelAdapter.setTextSize(textSize);
 
-    }
-
-    /**
-     * 解析省市区的XML数据
-     */
-
-    protected void initDatas(Context context) {
-
-//        mDatas = new String[3];
     }
 
 
