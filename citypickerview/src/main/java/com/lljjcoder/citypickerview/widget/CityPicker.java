@@ -289,7 +289,7 @@ public class CityPicker implements CanShow, OnWheelChangedListener {
                     listener.onSelected(mCurrentProviceName, mCurrentCityName, mCurrentDistrictName, mCurrentZipCode);
                 }
                 if (outsideTextView!=null){
-                    outsideTextView.setText(mCurrentProviceName+mCurrentCityName+mCurrentDistrictName);
+                    outsideTextView.setText(mCurrentProviceName+" "+mCurrentCityName+" "+mCurrentDistrictName);
                 }
                 hide();
             }

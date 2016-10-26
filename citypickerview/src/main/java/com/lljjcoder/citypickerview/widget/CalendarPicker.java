@@ -3,11 +3,17 @@ package com.lljjcoder.citypickerview.widget;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.PopupWindow;
@@ -18,6 +24,7 @@ import com.lljjcoder.citypickerview.widget.wheel.OnWheelChangedListener;
 import com.lljjcoder.citypickerview.widget.wheel.WheelView;
 import com.lljjcoder.citypickerview.widget.wheel.adapters.ArrayWheelAdapter;
 
+import java.lang.reflect.Field;
 import java.util.Calendar;
 
 import static android.R.attr.padding;
@@ -78,6 +85,7 @@ public class CalendarPicker implements CanShow {
     private String confirmTextColorStr = "#0000FF";
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private CalendarPicker(Builder builder) {
         this.textColor = builder.textColor;
         this.textSize = builder.textSize;
@@ -101,6 +109,42 @@ public class CalendarPicker implements CanShow {
         //设置时间指针
         mDatePicker.setMaxDate(Calendar.getInstance().getTimeInMillis()); // 最大时间
         mDatePicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        Field[] fields = DatePicker.class.getDeclaredFields();
+//获取DatePicker中的属性
+        View v_month2,v_month4;
+        View v_month3 = null;
+        for(Field field : fields) {
+            field.setAccessible(true);
+            if(field.getType().getSimpleName().equals("NumberPicker")) {
+                try {
+                    v_month2 = (View)field.get(mDatePicker);
+                    v_month3 = (View)field.get(mDatePicker);
+                    v_month4 = (View)field.get(mDatePicker);
+                } catch (Exception e) {
+                }
+            }
+        }
+        //获取NumberPicker中的属性
+        if(v_month3 != null) {
+            fields = v_month3.getClass().getDeclaredFields();
+            for(Field field : fields) {
+                field.setAccessible(true);
+                if(field.getType().getName().equals(EditText.class.getName())) {
+                    try {
+                        EditText v_edit3 = (EditText) field.get(v_month3);
+                        if(v_edit3 != null) {
+                            v_edit3.setTextSize(20);
+                        }
+                    }catch (Exception e) {
+//                        Log.e(TAG, e.getMessage());
+                    }
+                }
+            }
+        }
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(50, FrameLayout.LayoutParams.WRAP_CONTENT);
+////        params.setMargins(10, 0, 10, 0);
+//        mDatePicker.setLayoutParams(params);
+
 
         Calendar calendar = Calendar.getInstance();
         mYear = calendar.get(Calendar.YEAR);
@@ -236,6 +280,7 @@ public class CalendarPicker implements CanShow {
             return this;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         public CalendarPicker build() {
             CalendarPicker cityPicker = new CalendarPicker(this);
             return cityPicker;

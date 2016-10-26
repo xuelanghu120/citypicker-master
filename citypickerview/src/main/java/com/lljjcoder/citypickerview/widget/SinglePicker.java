@@ -358,6 +358,10 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
             popwindow.dismiss();
             return;
         }
+        if (outsideTextView!=null){
+            defaultName = outsideTextView.getText().toString();
+        }
+
         if (!TextUtils.isEmpty(defaultName) && mDatas.length > 0) {
             for (int i = 0; i < mDatas.length; i++) {
                 if (mDatas[i].contains(defaultName)) {
@@ -365,6 +369,9 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
                     break;
                 }
             }
+        }
+        if (provinceDefault==0){
+            mCurrentName = mDatas[0];
         }
         ArrayWheelAdapter arrayWheelAdapter = new ArrayWheelAdapter<String>(context, mDatas);
         mWheelView.setViewAdapter(arrayWheelAdapter);
