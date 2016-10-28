@@ -2,7 +2,7 @@
                 android:id="@+id/ll_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#b0000000"
+                android:background="#80000000"
                 android:orientation="vertical">
 
     <LinearLayout
@@ -53,21 +53,10 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.lljjcoder.citypickerview.widget.wheel.WheelView
-                android:id="@+id/id_province"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-            </com.lljjcoder.citypickerview.widget.wheel.WheelView>
-        </LinearLayout>
+        <com.lljjcoder.citypickerview.widget.wheel.WheelView
+            android:id="@+id/id_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.lljjcoder.citypickerview.widget.wheel.WheelView>
     </LinearLayout>
-
-
 </RelativeLayout>

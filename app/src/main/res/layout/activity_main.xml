@@ -23,4 +23,11 @@
         android:layout_marginTop="10dp"
         android:text="选择结果："
         android:textSize="20sp" />
+
+    <com.lljjcoder.citypickerview.widget.wheel.WheelView
+        android:layout_below="@+id/tv_result"
+        android:id="@+id/id_district_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.lljjcoder.citypickerview.widget.wheel.WheelView>
 </RelativeLayout>

@@ -6,29 +6,18 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lljjcoder.citypickerview.R;
-import com.lljjcoder.citypickerview.widget.wheel.OnWheelChangedListener;
-import com.lljjcoder.citypickerview.widget.wheel.WheelView;
-import com.lljjcoder.citypickerview.widget.wheel.adapters.ArrayWheelAdapter;
 
-import java.lang.reflect.Field;
 import java.util.Calendar;
-
-import static android.R.attr.padding;
-import static android.R.attr.y;
 
 
 public class CalendarPicker implements CanShow {
@@ -76,7 +65,7 @@ public class CalendarPicker implements CanShow {
     /**
      * Color.BLACK
      */
-    private String cancelTextColorStr = "#000000";
+    private String cancelTextColorStr = "#0000FF";
 
 
     /**
@@ -165,7 +154,7 @@ public class CalendarPicker implements CanShow {
                     listener.onSelected(mYear,mMonth+1,mDay);
                 }
                 if (outsideTextView!=null){
-                    outsideTextView.setText(mYear+"/"+mMonth+1);
+                    outsideTextView.setText(mYear+"/"+(mMonth+1));
                 }
                 hide();
             }

@@ -97,7 +97,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
     /**
      * Color.BLACK
      */
-    private String cancelTextColorStr = "#000000";
+    private String cancelTextColorStr = "#0000FF";
 
 
     /**
@@ -115,6 +115,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         this.context = builder.mContext;
         this.padding = builder.padding;
         this.mDatas = builder.datas;
+        this.textColor = builder.textColor;
 
         this.confirmTextColorStr = builder.confirmTextColorStr;
 
@@ -186,7 +187,8 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         /**
          * Default text color
          */
-        public static final int DEFAULT_TEXT_COLOR = 0xFF585858;
+//        public static final int DEFAULT_TEXT_COLOR = 0xFF585858;
+        public static final int DEFAULT_TEXT_COLOR = 0x000000;
 
         /**
          * Default text size
@@ -223,7 +225,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         /**
          * Color.BLACK
          */
-        private String cancelTextColorStr = "#000000";
+        private String cancelTextColorStr = "#0000ff";
 
 
         /**
@@ -381,7 +383,6 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         }
         // 设置可见条目数量
         mWheelView.setVisibleItems(visibleItems);
-
         mWheelView.setCyclic(isCyclicForever);
         arrayWheelAdapter.setPadding(padding);
         arrayWheelAdapter.setTextColor(textColor);
