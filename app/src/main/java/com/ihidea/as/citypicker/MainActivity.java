@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 
 import com.lljjcoder.citypickerview.widget.CityPicker;
-
-
+import com.lljjcoder.citypickerview.widget.wheel.WheelView;
+import com.lljjcoder.citypickerview.widget.wheel.adapters.ArrayWheelAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        WheelView mWheelView = (WheelView) findViewById(R.id.id_district_ll);
+        WheelView mWheelView = (WheelView) findViewById(R.id.id_district_ll);
         final String[] datas = getResources().getStringArray(R.array.content_data);
-//        ArrayWheelAdapter arrayWheelAdapter = new ArrayWheelAdapter<String>(MainActivity.this, datas);
-//        mWheelView.setViewAdapter(arrayWheelAdapter);
-//        //获取所设置的省的位置，直接定位到该位置
-//
-//        arrayWheelAdapter.setTextColor(Color.parseColor("#000000"));
+        ArrayWheelAdapter arrayWheelAdapter = new ArrayWheelAdapter<String>(MainActivity.this, datas);
+        mWheelView.setViewAdapter(arrayWheelAdapter);
+        //获取所设置的省的位置，直接定位到该位置
+        mWheelView.setDrawShadows(true);
+        arrayWheelAdapter.setTextColor(Color.parseColor("#000000"));
 
 
 

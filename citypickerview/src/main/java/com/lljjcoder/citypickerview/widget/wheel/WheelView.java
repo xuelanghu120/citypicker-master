@@ -34,6 +34,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Interpolator;
+import android.widget.Adapter;
 import android.widget.LinearLayout;
 
 import com.lljjcoder.citypickerview.R;
@@ -657,7 +658,9 @@ public class WheelView extends View {
         /*/ Modified by wulianghuan 2014-11-25
         int height = (int)(1.5 * getItemHeight());
 		//*/
-        int height = (int) (3 * getItemHeight());
+        //从中间到顶部渐变处理
+        int count = getVisibleItems() == 2 ? 1 : getVisibleItems() / 2;
+        int height = (int) (count * getItemHeight());
         //*/
         topShadow.setBounds(0, 0, getWidth(), height);
         topShadow.draw(canvas);
