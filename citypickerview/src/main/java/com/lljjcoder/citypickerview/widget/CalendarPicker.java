@@ -61,7 +61,7 @@ public class CalendarPicker implements CanShow {
 
     private int textSize = DEFAULT_TEXT_SIZE;
 
-    private int mYear, mMonth,mDay;
+    private int mYear, mMonth, mDay;
     /**
      * Color.BLACK
      */
@@ -88,6 +88,7 @@ public class CalendarPicker implements CanShow {
 
         this.mTvTitleVisible = builder.mTvTitleVisible;
         this.outsideTextView = builder.textView;
+        this.listener = builder.listener;
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         popview = layoutInflater.inflate(R.layout.pop_canlendarpicker, null);
@@ -150,11 +151,11 @@ public class CalendarPicker implements CanShow {
         mTvOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener!=null){
-                    listener.onSelected(mYear,mMonth+1,mDay);
+                if (listener != null) {
+                    listener.onSelected(mYear, mMonth + 1, mDay);
                 }
-                if (outsideTextView!=null){
-                    outsideTextView.setText(mYear+"/"+(mMonth+1));
+                if (outsideTextView != null) {
+                    outsideTextView.setText(mYear + "/" + (mMonth + 1));
                 }
                 hide();
             }
@@ -184,7 +185,7 @@ public class CalendarPicker implements CanShow {
         /**
          * Color.BLACK
          */
-        private String cancelTextColorStr = "#000000";
+        private String cancelTextColorStr = "#0000FF";
 
 
         /**
@@ -200,6 +201,12 @@ public class CalendarPicker implements CanShow {
             this.mContext = context;
         }
 
+        public OnItemClickListener listener;
+
+        public Builder setOnItemClickListener(OnItemClickListener listener) {
+            this.listener = listener;
+            return this;
+        }
 
         /**
          * 确认按钮文字颜色
@@ -212,7 +219,7 @@ public class CalendarPicker implements CanShow {
             return this;
         }
 
-        public Builder setTextView(TextView textView){
+        public Builder setTextView(TextView textView) {
             this.textView = textView;
             return this;
         }

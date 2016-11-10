@@ -50,14 +50,12 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
 
     private OnItemClickListener listener;
     private CharSequence defaultName = null;
+    private int mCurrentIndex = 0;
 
     public interface OnItemClickListener {
-        void onSelected(String  selected);
+        void onSelected(PopupWindow popupWindow,String  selected ,int mCurrentIndex);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
 
     /**
      * Default text color
@@ -123,6 +121,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
 
         this.mTvTitleVisible = builder.mTvTitleVisible;
         this.outsideTextView = builder.textView;
+        this.listener = builder.listener;
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         popview = layoutInflater.inflate(R.layout.pop_singlepicker, null);
@@ -172,7 +171,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
             @Override
             public void onClick(View v) {
                 if (listener!=null){
-                    listener.onSelected(mCurrentName);
+                    listener.onSelected(popwindow,mCurrentName,mCurrentIndex);
                 }
                 if (outsideTextView!=null){
                     outsideTextView.setText(mCurrentName);
@@ -187,8 +186,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         /**
          * Default text color
          */
-//        public static final int DEFAULT_TEXT_COLOR = 0xFF585858;
-        public static final int DEFAULT_TEXT_COLOR = 0x000000;
+        public static final int DEFAULT_TEXT_COLOR = 0xFF585858;
 
         /**
          * Default text size
@@ -238,6 +236,13 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         private String builderDefaultName;
         private String[] datas;
         private TextView textView;
+
+        private OnItemClickListener listener;
+
+        public Builder setOnItemClickListener(OnItemClickListener listener) {
+            this.listener = listener;
+            return this;
+        }
 
         public Builder(Context context) {
             this.mContext = context;
@@ -374,6 +379,8 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
         }
         if (provinceDefault==0){
             mCurrentName = mDatas[0];
+        }else {
+            mCurrentIndex = provinceDefault;
         }
         ArrayWheelAdapter arrayWheelAdapter = new ArrayWheelAdapter<String>(context, mDatas);
         mWheelView.setViewAdapter(arrayWheelAdapter);
@@ -418,5 +425,7 @@ public class SinglePicker implements CanShow, OnWheelChangedListener {
     @Override
     public void onChanged(WheelView wheel, int oldValue, int newValue) {
         mCurrentName = mDatas[newValue];
+        mCurrentIndex = newValue;
+
     }
 }
